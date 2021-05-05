@@ -20,6 +20,21 @@ const addCharacter = (req, res) => {
     })
 }
 
+const getCharacter = (req, res) => {
+  const { id } = req.params;
+
+  const db = req.app.get('db');
+
+  db
+    .get_character_by_id(id)
+    .then((character) => {
+      res.status(200).json(character);
+    })
+    .catch((e) => res.status(500).json(e))
+
+}
+
 module.exports = {
-  addCharacter
+  addCharacter,
+  getCharacter
 };

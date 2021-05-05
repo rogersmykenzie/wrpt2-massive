@@ -1,7 +1,10 @@
 require('dotenv').config();
 const express = require('express');
 const massive = require('massive');
-const { addCharacter } = require('./characterController');
+const {
+  addCharacter,
+  getCharacter,
+} = require('./characterController');
 
 // const dotenv = require('dotenv');
 
@@ -27,5 +30,7 @@ massive({
   })
 
 app.post('/api/characters', addCharacter);
+app.get('/api/characters/:id', getCharacter);
+
 
 app.listen(process.env.SERVER_PORT, () => console.log(`Listening on Port ${process.env.SERVER_PORT}`));
